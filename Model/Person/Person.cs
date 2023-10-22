@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MendezPablo_Proyecto
+namespace MendezPablo_Proyecto.Modelo.Person
 {
     abstract class Person
     {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MendezPablo_Proyecto
+namespace MendezPablo_Proyecto.Controller.Interfaces
 {
-    public interface ContentManagement
+    public interface IPersonManagement
     {
     }
 }

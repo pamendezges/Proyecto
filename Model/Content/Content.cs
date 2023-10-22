@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MendezPablo_Proyecto
+namespace MendezPablo_Proyecto.Modelo.Content
 {
     abstract class Content
     {
@@ -16,11 +16,11 @@ namespace MendezPablo_Proyecto
 
         public Content(int idFilm, string title, string category)
         {
-            this.Id = idFilm;
-            this.Title = title;
-            this.Category = category;
-            this.Rating = 0;// rating between 0 and 5
-            this.NumOfRates = 0;// var for calculating rating
+            Id = idFilm;
+            Title = title;
+            Category = category;
+            Rating = 0;// rating between 0 and 5
+            NumOfRates = 0;// var for calculating rating
         }
 
         public int Id { get => id; set => id = value; }

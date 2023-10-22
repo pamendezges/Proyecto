@@ -4,24 +4,28 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MendezPablo_Proyecto.Controller.Interfaces;
+using MendezPablo_Proyecto.Modelo.Content;
 
-namespace MendezPablo_Proyecto
+namespace MendezPablo_Proyecto.Controller.Implementations
 {
-    class Contents : ContentManagement
+    class Contents : IContentManagement
     {
 
         private List<Content> billboard = new List<Content>();
 
+        public List<Content> Billboard { get => billboard; set => billboard = value; }
+
         public Contents()
         {
-            this.billboard = new List<Content>();
+            Billboard = new List<Content>();
         }
 
         public void AddContent(Content c)
         {
             if (c != null)
             {
-                billboard.Add(c);
+                Billboard.Add(c);
             }
             else
             {
@@ -31,9 +35,9 @@ namespace MendezPablo_Proyecto
 
         public void DeleteContent(Content c)
         {
-            if (c != null & billboard.Contains(c))
+            if (c != null & Billboard.Contains(c))
             {
-                billboard.Remove(c);
+                Billboard.Remove(c);
             }
             else
             {
@@ -44,9 +48,9 @@ namespace MendezPablo_Proyecto
         public void ShowContent()
         {
             int i = 0;
-            while (i < billboard.Count)
+            while (i < Billboard.Count)
             {
-                Console.WriteLine(billboard[i].Id + " _ " + billboard[i].Title);
+                Console.WriteLine(Billboard[i].Id + " _ " + Billboard[i].Title);
             }
         }
 
@@ -56,7 +60,7 @@ namespace MendezPablo_Proyecto
             int rate = 0;
             Console.WriteLine("¿Que nota le das a " + c.Title + "?. Selecciona un numero del 1 al 5.");
             rate = Convert.ToInt32(Console.ReadLine());
-            sum = sum+rate;
+            sum = sum + rate;
             c.NumOfRates++;
             c.Rating = sum / c.NumOfRates;
         }

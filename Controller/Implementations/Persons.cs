@@ -3,24 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MendezPablo_Proyecto.Controller.Interfaces;
+using MendezPablo_Proyecto.Modelo.Person;
 
-namespace MendezPablo_Proyecto
+namespace MendezPablo_Proyecto.Controller.Implementations
 {
-    class Persons : PersonManagement
+    class Persons : IPersonManagement
     {
 
         private List<Person> logins = new List<Person>();
 
+        public List<Person> Logins { get => logins; set => logins = value; }
+
         public Persons()
         {
-            this.logins = new List<Person>();
+            Logins = new List<Person>();
         }
 
         public void AddPerson(Person p)
         {
             if (p != null)
             {
-                logins.Add(p);
+                Logins.Add(p);
             }
             else
             {
@@ -30,9 +34,9 @@ namespace MendezPablo_Proyecto
 
         public void DeletePerson(Person p)
         {
-            if (p != null & logins.Contains(p))
+            if (p != null & Logins.Contains(p))
             {
-                logins.Remove(p);
+                Logins.Remove(p);
             }
             else
             {
@@ -44,9 +48,9 @@ namespace MendezPablo_Proyecto
         {
             Console.WriteLine("List of Persons (id, name)");
             int i = 0;
-            while (i < logins.Count)
+            while (i < Logins.Count)
             {
-                Console.WriteLine(logins[i].Id + " _ " + logins[i].Name);
+                Console.WriteLine(Logins[i].Id + " _ " + Logins[i].Name);
                 i++;
             }
             Console.WriteLine();
@@ -57,7 +61,7 @@ namespace MendezPablo_Proyecto
 
         }
 
-        
+
 
     }
 }

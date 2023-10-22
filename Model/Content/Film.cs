@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MendezPablo_Proyecto
+namespace MendezPablo_Proyecto.Modelo.Content
 {
     class Film : Content
     {
-        private String producer;
-        private String director;
-        private String mainActor;
+        private string producer;
+        private string director;
+        private string mainActor;
 
         public Film(int id, string title, string category) :
-               this(id, title, category, String.Empty, String.Empty, String.Empty)
+               this(id, title, category, string.Empty, string.Empty, string.Empty)
         { }
 
         public Film(int id, string title, string category, string producer, string director, string mainActor) : base(id, title, category)

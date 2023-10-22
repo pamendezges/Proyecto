@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MendezPablo_Proyecto
+namespace MendezPablo_Proyecto.Modelo.Content
 {
     class Documentary : Content
     {
-        private String tvProducer;
+        private string tvProducer;
         private bool voiceOver;
 
         public Documentary(int id, string title, string category) :
-               this(id, title, category, String.Empty, true)
+               this(id, title, category, string.Empty, true)
         { }
 
         public Documentary(int id, string title, string category, string tvProducer, bool voiceOver) : base(id, title, category)

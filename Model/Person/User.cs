@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace MendezPablo_Proyecto
+namespace MendezPablo_Proyecto.Modelo.Person
 {
     class User : Person
     {
@@ -13,14 +13,14 @@ namespace MendezPablo_Proyecto
         private int numOfProfiles;
         private bool parentControl;
 
-        public User (int id, string name, string password) : 
+        public User(int id, string name, string password) :
                this(id, name, password, string.Empty, 0, false)
         { }
 
         public User(int id, string name, string password, string monthlyPlan, int numProfiles, bool parentControl) : base(id, name, password)
         {
             this.monthlyPlan = monthlyPlan;
-            this.numOfProfiles = numProfiles;
+            numOfProfiles = numProfiles;
             this.parentControl = parentControl;
 
         }

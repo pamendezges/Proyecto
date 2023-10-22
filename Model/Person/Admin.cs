@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace MendezPablo_Proyecto
+namespace MendezPablo_Proyecto.Modelo.Person
 {
     class Admin : Person
     {
@@ -21,7 +21,7 @@ namespace MendezPablo_Proyecto
             this.accessLevel = accessLevel;
             this.godMode = godMode;
 
-        }   
+        }
 
         public int AccessLevel { get => accessLevel; set => accessLevel = value; }
         public bool GodMode { get => godMode; set => godMode = value; }
