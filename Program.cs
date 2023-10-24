@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MendezPablo_Proyecto.Controlador.DBController;
 using MendezPablo_Proyecto.Controller.Implementations;
 using MendezPablo_Proyecto.Modelo.Person;
 using Microsoft.VisualBasic;
@@ -15,6 +16,8 @@ namespace MendezPablo_Proyecto
         {
             Persons people = new Persons();
             Contents movies = new Contents();
+
+            FileUserManagement fileUserManagement = new FileUserManagement();
 
             Admin a1 = new Admin(1, "Knekro", "1234", 3, true);
             Admin a2 = new Admin(2, "Wanillo", "1234", 2, true);
@@ -31,6 +34,8 @@ namespace MendezPablo_Proyecto
             people.AddPerson(u3);
 
             people.ShowPersons();
+
+            fileUserManagement.SaveToFile(people);
 
         }
 
