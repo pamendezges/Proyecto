@@ -2,29 +2,36 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using MendezPablo_Proyecto.Controller.Implementations;
 using MendezPablo_Proyecto.Modelo.Content;
+using MendezPablo_Proyecto.Modelo.Person;
 
 namespace MendezPablo_Proyecto.Controlador.DBController
 {
     class FileDocumentaryManagement
     {
 
-        public void SaveToFile(Contents content)
+        public void SaveToFile(Contents movies)
         {
-            string path = @"C:\Users\pamendez\Documents\test.txt";
 
-            if (File.Exists(path))
+            var jsonFolder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"jsonFiles\DocumentariesList.json");
+
+            if (File.Exists(jsonFolder))
             {
-                File.Delete(path);
+                File.Delete(jsonFolder);
             }
 
-            using (StreamWriter sw = File.CreateText(path))
+            using (StreamWriter sw = File.CreateText(jsonFolder))
             {
-                foreach (Documentary documentary in content.Billboard)
+                foreach (Content content in movies.Billboard)
                 {
-                    sw.WriteLine(documentary.ToString());
+                    if (content is Documentary documentary)
+                    {
+                        string jsonString = JsonSerializer.Serialize(documentary);
+                        sw.WriteLine(jsonString);
+                    }
 
                 }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using MendezPablo_Proyecto.Controller.Implementations;
 using MendezPablo_Proyecto.Modelo.Person;
@@ -11,20 +12,25 @@ namespace MendezPablo_Proyecto.Controlador.DBController
     class FileAdminManagement
     {
 
-        public void SaveToFile(Persons person)
+        public void SaveToFile(Persons people)
         {
-            string path = @"C:\Users\pamendez\Documents\test.txt";
 
-            if (File.Exists(path))
+            var jsonFolder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"jsonFiles\AdminList.json");
+
+            if (File.Exists(jsonFolder))
             {
-                File.Delete(path);
+                File.Delete(jsonFolder);
             }
 
-            using (StreamWriter sw = File.CreateText(path))
+            using (StreamWriter sw = File.CreateText(jsonFolder))
             {
-                foreach (Admin admin in person.Logins)
+                foreach (Person person in people.Logins)
                 {
-                    sw.WriteLine(admin.ToString());
+                    if (person is Admin admin)
+                    {
+                        string jsonString = JsonSerializer.Serialize(admin);
+                        sw.WriteLine(jsonString);
+                    }
 
                 }
 

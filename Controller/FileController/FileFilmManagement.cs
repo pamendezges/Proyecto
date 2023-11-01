@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using MendezPablo_Proyecto.Controller.Implementations;
 using MendezPablo_Proyecto.Modelo.Content;
@@ -11,20 +12,25 @@ namespace MendezPablo_Proyecto.Controlador.DBController
     class FileFilmManagement
     {
 
-        public void SaveToFile(Contents content)
+        public void SaveToFile(Contents movies)
         {
-            string path = @"C:\Users\pamendez\Documents\test.txt";
 
-            if (File.Exists(path))
+            var jsonFolder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"jsonFiles\FilmsList.json");
+
+            if (File.Exists(jsonFolder))
             {
-                File.Delete(path);
+                File.Delete(jsonFolder);
             }
 
-            using (StreamWriter sw = File.CreateText(path))
+            using (StreamWriter sw = File.CreateText(jsonFolder))
             {
-                foreach (Film film in content.Billboard)
+                foreach (Content content in movies.Billboard)
                 {
-                    sw.WriteLine(film.ToString());
+                    if (content is Film film)
+                    {
+                        string jsonString = JsonSerializer.Serialize(film);
+                        sw.WriteLine(jsonString);
+                    }
 
                 }
 

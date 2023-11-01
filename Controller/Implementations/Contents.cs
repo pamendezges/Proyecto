@@ -47,14 +47,17 @@ namespace MendezPablo_Proyecto.Controller.Implementations
 
         public void ShowContent()
         {
+            Console.WriteLine("List of Movies (id, name)");
             int i = 0;
             while (i < Billboard.Count)
             {
                 Console.WriteLine(Billboard[i].Id + " _ " + Billboard[i].Title);
+                i++;
             }
+            Console.WriteLine();
         }
 
-        public void RateContent(Content c)
+        public void RateContent(Content c) //AVERAGE
         {
             int sum = c.Rating * c.NumOfRates;
             int rate = 0;

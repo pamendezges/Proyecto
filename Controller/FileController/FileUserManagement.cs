@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -11,22 +12,27 @@ namespace MendezPablo_Proyecto.Controlador.DBController
 {
     class FileUserManagement
     {
+        
 
-        public void SaveToFile(Persons person)
+        public void SaveToFile(Persons people)
         {
-            string path = @"C:\Users\pamendez\Documents\UserList.txt";
 
-            if (File.Exists(path))
+            var jsonFolder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"jsonFiles\UserList.json");
+
+            if (File.Exists(jsonFolder))
             {
-                File.Delete(path);
+                File.Delete(jsonFolder);
             }
 
-            using (StreamWriter sw = File.CreateText(path))
+            using (StreamWriter sw = File.CreateText(jsonFolder))
             {
-                foreach (User user in person.Logins)
+                foreach (Person person in people.Logins)
                 {
-                    string jsonString = JsonSerializer.Serialize(user);
-                    sw.WriteLine(jsonString);
+                    if(person is User user)
+                    {
+                        string jsonString = JsonSerializer.Serialize(user);
+                        sw.WriteLine(jsonString);
+                    }
 
                 }
 
